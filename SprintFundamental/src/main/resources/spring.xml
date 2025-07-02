@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- bean definitions here -->
+
+    <bean class="org.example.Engine" id="engine1">
+        <constructor-arg value="V8 Engine"/>
+    </bean>
+
+    <bean class="org.example.Engine" id="engine2">
+        <constructor-arg value="Turbo Engine"/>
+    </bean>
+
+    <bean class="org.example.Car" id="car1">
+        <constructor-arg ref="engine1"/>
+        <constructor-arg value="Red"/>
+    </bean>
+
+    <bean class="org.example.Car" id="car2">
+        <constructor-arg ref="engine2"/>
+        <constructor-arg value="Black"/>
+    </bean>
+
+</beans>
