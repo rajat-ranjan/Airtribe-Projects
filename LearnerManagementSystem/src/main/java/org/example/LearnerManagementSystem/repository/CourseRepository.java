@@ -1,0 +1,10 @@
+package org.example.LearnerManagementSystem.repository;
+
+import org.example.LearnerManagementSystem.entity.Course;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface CourseRepository extends JpaRepository<Course, Long> {
+
+}

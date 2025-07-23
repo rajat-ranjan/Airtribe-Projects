@@ -1,9 +1,9 @@
 package org.example.LearnerManagementSystem.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Learners {
@@ -15,6 +15,9 @@ public class Learners {
     private String learnerName;
     private String learnerEmail;
     private String learnerPhone;
+    @ManyToMany(mappedBy = "learnersList")//Cyclic reference
+    @JsonIgnore
+    private List<Cohorts> cohortsList;
 
     public Learners() {
         // Default constructor
@@ -57,5 +60,13 @@ public class Learners {
 
     public void setLearnerPhone(String learnerPhone) {
         this.learnerPhone = learnerPhone;
+    }
+
+    public List<Cohorts> getCohortsList() {
+        return cohortsList;
+    }
+
+    public void setCohortsList(List<Cohorts> cohortsList) {
+        this.cohortsList = cohortsList;
     }
 }
