@@ -7,6 +7,10 @@ import org.example.LearnerManagementSystem.exception.LearnerNotFoundException;
 import org.example.LearnerManagementSystem.repository.CohortRepository;
 import org.example.LearnerManagementSystem.repository.LearnersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,5 +58,13 @@ public class CohortManagementService {
         cohorts.getLearnersList().addAll(learners);
 //        learnersRepository.saveAll(learners); - removed because using cascaded functionality
         return cohortRepository.save(cohorts);
+    }
+
+    public PageResponse<Cohorts> getPaginatedCohorts(int pageSize, String sortBy, int pageNumber, String sortDir1) {
+        Sort sort = Sort.by(sortDir1, sortBy);
+        Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+
+        Page<Cohorts> pageCohort = cohortRepository.findAll(pageable);
+
     }
 }

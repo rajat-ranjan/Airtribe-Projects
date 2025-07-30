@@ -1,5 +1,6 @@
 package org.example.LearnerManagementSystem.controller;
 
+import jakarta.validation.Valid;
 import org.example.LearnerManagementSystem.entity.Learners;
 import org.example.LearnerManagementSystem.exception.LearnerNotFoundException;
 import org.example.LearnerManagementSystem.service.LearnersManagementService;
@@ -18,7 +19,7 @@ public class LearnersController {
     private LearnersManagementService learnersManagementService;
 
     @PostMapping("/learners")
-    public Learners createLearner(@RequestBody Learners learner) {
+    public Learners createLearner(@Valid @RequestBody Learners learner) {
         // Here you would typically save the learner to a database
         // For now, we will just return the learner object
         return learnersManagementService.createLearner(learner);

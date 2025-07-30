@@ -2,6 +2,10 @@ package org.example.LearnerManagementSystem.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.util.List;
 
@@ -12,8 +16,13 @@ public class Learners {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long learnerId;
+
+    @NotBlank
+    @NotNull
     private String learnerName;
+    @Email
     private String learnerEmail;
+    @Positive
     private String learnerPhone;
     @ManyToMany(mappedBy = "learnersList")//Cyclic reference
     @JsonIgnore
